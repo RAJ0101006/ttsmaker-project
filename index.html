@@ -1,0 +1,1664 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-gray-50">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional TTSMaker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(-45deg, #f0f4f8, #e2e8f0, #cbd5e0, #a0aec0);
+            background-size: 400% 400%;
+            animation: gradient-animation 15s ease infinite;
+        }
+        @keyframes gradient-animation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .spinner {
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid #fff;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .button-gradient {
+            background-image: linear-gradient(to right, #4F46E5, #3B82F6);
+        }
+        .button-gradient:hover {
+            background-image: linear-gradient(to right, #3B82F6, #4F46E5);
+        }
+        .tab-button {
+            transition: all 0.3s ease-in-out;
+        }
+        .tab-button.active {
+            background-color: #3B82F6;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(59, 130, 246, 0.3);
+        }
+        .tab-button:not(.active) {
+            background-color: #E5E7EB;
+            color: #4B5563;
+        }
+        .slide-in-up {
+            animation: slideInUp 0.5s ease-out;
+        }
+        @keyframes slideInUp {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body class="flex flex-col items-center justify-center min-h-screen p-4 bg-gray-50">
+
+    <!-- Main Container -->
+    <div class="bg-white p-8 rounded-2xl shadow-2xl w-full max-w-lg space-y-6 transform transition-all duration-300 slide-in-up">
+        <h1 class="text-3xl font-bold text-center text-gray-900">Professional TTSMaker</h1>
+        <p class="text-center text-gray-500">
+            Convert text to speech online and use AI tools to enhance your content.
+        </p>
+        
+        <!-- Tab Navigation -->
+        <div class="flex justify-center space-x-2 sm:space-x-4 mb-4">
+            <button id="tab-tts" class="tab-button active font-semibold py-2 px-4 rounded-xl shadow-md">TTS</button>
+            <button id="tab-aifeatures" class="tab-button font-semibold py-2 px-4 rounded-xl shadow-md">AI Text</button>
+            <button id="tab-creative" class="tab-button font-semibold py-2 px-4 rounded-xl shadow-md">Creative Tools</button>
+        </div>
+
+        <!-- TTS Section -->
+        <div id="section-tts" class="tab-content space-y-4">
+            <h2 class="text-xl font-bold text-gray-800">Text-to-Speech</h2>
+            <textarea id="textInput"
+                class="w-full h-40 p-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                placeholder="Enter your text here..."></textarea>
+            
+            <div class="flex flex-col sm:flex-row items-center justify-between space-y-4 sm:space-y-0 sm:space-x-4">
+                <div class="w-full sm:w-1/2">
+                    <label for="voiceSelect" class="block text-sm font-medium text-gray-700 mb-1">AI Voices:</label>
+                    <select id="voiceSelect" class="w-full p-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors">
+                        <option value="Zephyr">Zephyr (Bright)</option>
+                        <option value="Puck">Puck (Upbeat)</option>
+                        <option value="Charon">Charon (Informative)</option>
+                        <option value="Kore">Kore (Firm)</option>
+                        <option value="Fenrir">Fenrir (Excitable)</option>
+                        <option value="Leda">Leda (Youthful)</option>
+                        <option value="Orus">Orus (Firm)</option>
+                        <option value="Aoede">Aoede (Breezy)</option>
+                        <option value="Callirrhoe">Callirrhoe (Easy-going)</option>
+                        <option value="Autonoe">Autonoe (Bright)</option>
+                        <option value="Enceladus">Enceladus (Breathy)</option>
+                        <option value="Iapetus">Iapetus (Clear)</option>
+                        <option value="Umbriel">Umbriel (Easy-going)</option>
+                        <option value="Algieba">Algieba (Smooth)</option>
+                        <option value="Despina">Despina (Smooth)</option>
+                        <option value="Erinome">Erinome (Clear)</option>
+                        <option value="Algenib">Algenib (Gravelly)</option>
+                        <option value="Rasalgethi">Rasalgethi (Informative)</option>
+                        <option value="Laomedeia">Laomedeia (Upbeat)</option>
+                        <option value="Achernar">Achernar (Soft)</option>
+                        <option value="Alnilam">Alnilam (Firm)</option>
+                        <option value="Schedar">Schedar (Even)</option>
+                        <option value="Gacrux">Gacrux (Mature)</option>
+                        <option value="Pulcherrima">Pulcherrima (Forward)</option>
+                        <option value="Achird">Achird (Friendly)</option>
+                        <option value="Zubenelgenubi">Zubenelgenubi (Casual)</option>
+                        <option value="Vindemiatrix">Vindemiatrix (Gentle)</option>
+                        <option value="Sadachbia">Sadachbia (Lively)</option>
+                        <option value="Sadaltager">Sadaltager (Knowledgeable)</option>
+                        <option value="Sulafat">Sulafat (Warm)</option>
+                        <option value="Antares">Antares (Strong, resonant male voice)</option>
+                        <option value="Arcturus">Arcturus (Clear, friendly male voice)</option>
+                        <option value="Betelgeuse">Betelgeuse (Deep, authoritative male voice)</option>
+                        <option value="Capella">Capella (Clear, high-pitched female voice)</option>
+                        <option value="Deneb">Deneb (Smooth, calm male voice)</option>
+                        <option value="Elnath">Elnath (Breezy, youthful male voice)</option>
+                        <option value="Fomalhaut">Fomalhaut (Upbeat, lively female voice)</option>
+                        <option value="Hadid">Hadid (Gravelly, deep male voice)</option>
+                        <option value="Izumi">Izumi (Clear, gentle female voice)</option>
+                        <option value="Juno">Juno (Bright, energetic female voice)</option>
+                        <option value="Kassia">Kassia (Breezy, young female voice)</option>
+                        <option value="Leliana">Leliana (Calm, mature female voice)</option>
+                        <option value="Nereid">Nereid (Slightly gravelly, deep male voice)</option>
+                        <option value="Oberon">Oberon (Clear, friendly male voice)</option>
+                        <option value="Phoenix">Phoenix (Clear, energetic male voice)</option>
+                        <option value="Quasar">Quasar (Slightly gravelly, strong male voice)</option>
+                        <option value="Rigel">Rigel (Deep, resonant male voice)</option>
+                        <option value="Sirius">Sirius (Clear, confident male voice)</option>
+                        <option value="Spica">Spica (Breezy, light female voice)</option>
+                        <option value="Titania">Titania (Warm, smooth female voice)</option>
+                        <option value="Vega">Vega (Clear, bright female voice)</option>
+                        <option value="Xenia">Xenia (Deep, calm female voice)</option>
+                        <option value="Yuki">Yuki (Soft, gentle female voice)</option>
+                        <option value="Zelia">Zelia (Breezy, playful female voice)</option>
+                    </select>
+                </div>
+                <button id="convertBtn"
+                    class="w-full sm:w-1/2 py-3 px-6 text-white font-semibold rounded-xl shadow-lg button-gradient transition-transform transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed">
+                    <span id="btnText">Convert Text to Speech</span>
+                    <div id="loadingSpinner" class="spinner hidden mx-auto"></div>
+                </button>
+            </div>
+            
+            <div id="resultSection" class="w-full space-y-4 hidden">
+                <div class="w-full">
+                    <label for="audioPlayer" class="block text-sm font-medium text-gray-700 mb-1">Listen to your audio:</label>
+                    <audio id="audioPlayer" class="w-full rounded-xl" controls></audio>
+                </div>
+                <button id="downloadBtn"
+                    class="w-full py-2 px-4 bg-gray-200 text-gray-700 font-semibold rounded-xl shadow-md hover:bg-gray-300 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2">
+                    Download Voice File (WAV)
+                </button>
+            </div>
+        </div>
+
+        <!-- AI Text Features Section (initially hidden) -->
+        <div id="section-aifeatures" class="tab-content space-y-4 hidden">
+            <h2 class="text-xl font-bold text-gray-800">AI Text Features</h2>
+            <div class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2">
+                <button id="summarizeBtn"
+                    class="w-full sm:w-1/2 py-2 px-4 bg-purple-600 text-white font-semibold rounded-xl shadow-md hover:bg-purple-700 transition-transform transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed">
+                    ✨ Summarize Text
+                </button>
+                <button id="paraphraseBtn"
+                    class="w-full sm:w-1/2 py-2 px-4 bg-purple-600 text-white font-semibold rounded-xl shadow-md hover:bg-purple-700 transition-transform transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed">
+                    ✨ Paraphrase Text
+                </button>
+            </div>
+            <div class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2">
+                <button id="fixGrammarBtn"
+                    class="w-full sm:w-1/2 py-2 px-4 bg-purple-600 text-white font-semibold rounded-xl shadow-md hover:bg-purple-700 transition-transform transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed">
+                    ✨ Fix Grammar
+                </button>
+                <div class="w-full sm:w-1/2 flex items-center space-x-2">
+                    <select id="languageSelect" class="w-2/3 p-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 transition-colors">
+                        <option value="es">Spanish</option>
+                        <option value="fr">French</option>
+                        <option value="de">German</option>
+                        <option value="ja">Japanese</option>
+                        <option value="hi">Hindi</option>
+                    </select>
+                    <button id="translateBtn"
+                        class="w-full py-2 px-4 bg-purple-600 text-white font-semibold rounded-xl shadow-md hover:bg-purple-700 transition-transform transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed">
+                        ✨ Translate
+                    </button>
+                </div>
+            </div>
+            <div class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2">
+                <div class="w-full sm:w-1/2 flex items-center space-x-2">
+                    <select id="toneSelect" class="w-2/3 p-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 transition-colors">
+                        <option value="cheerful">Cheerful</option>
+                        <option value="formal">Formal</option>
+                        <option value="serious">Serious</option>
+                        <option value="excited">Excited</option>
+                        <option value="calm">Calm</option>
+                    </select>
+                    <button id="adjustToneBtn"
+                        class="w-full py-2 px-4 bg-purple-600 text-white font-semibold rounded-xl shadow-md hover:bg-purple-700 transition-transform transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed">
+                        ✨ Adjust Tone
+                    </button>
+                </div>
+                <button id="expandBtn"
+                    class="w-full sm:w-1/2 py-2 px-4 bg-purple-600 text-white font-semibold rounded-xl shadow-md hover:bg-purple-700 transition-transform transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed">
+                    ✨ Expand Text
+                </button>
+            </div>
+            
+            <!-- New Fact Check and Answer Question features -->
+            <div class="space-y-2">
+                <h3 class="text-lg font-medium text-gray-700">Fact Check</h3>
+                <input type="text" id="factCheckPrompt" placeholder="Enter a statement to fact check"
+                    class="w-full p-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors">
+                <button id="factCheckBtn"
+                    class="w-full py-2 px-4 bg-purple-600 text-white font-semibold rounded-xl shadow-md hover:bg-purple-700 transition-transform transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed">
+                    ✨ Fact Check
+                </button>
+            </div>
+
+            <div class="space-y-2">
+                <h3 class="text-lg font-medium text-gray-700">Answer Questions</h3>
+                <input type="text" id="answerQuestionPrompt" placeholder="e.g., What is the capital of France?"
+                    class="w-full p-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors">
+                <button id="answerQuestionBtn"
+                    class="w-full py-2 px-4 bg-purple-600 text-white font-semibold rounded-xl shadow-md hover:bg-purple-700 transition-transform transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed">
+                    ✨ Answer Question
+                </button>
+            </div>
+
+            <!-- New Business Email feature -->
+            <div class="space-y-2">
+                <h3 class="text-lg font-medium text-gray-700">Write a Business Email</h3>
+                <input type="text" id="emailRecipient" placeholder="Recipient's Name"
+                    class="w-full p-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors">
+                <input type="text" id="emailTopic" placeholder="Email Topic"
+                    class="w-full p-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors">
+                <button id="generateEmailBtn"
+                    class="w-full py-2 px-4 bg-purple-600 text-white font-semibold rounded-xl shadow-md hover:bg-purple-700 transition-transform transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed">
+                    ✨ Generate Email
+                </button>
+            </div>
+            
+            <!-- New Keyword Extraction feature -->
+            <div class="space-y-2">
+                <h3 class="text-lg font-medium text-gray-700">Extract Keywords</h3>
+                <textarea id="keywordsInput"
+                    class="w-full h-24 p-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                    placeholder="Enter text to extract keywords from..."></textarea>
+                <button id="extractKeywordsBtn"
+                    class="w-full py-2 px-4 bg-purple-600 text-white font-semibold rounded-xl shadow-md hover:bg-purple-700 transition-transform transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed">
+                    ✨ Extract Keywords
+                </button>
+                <div id="keywordsOutput" class="w-full p-4 bg-gray-50 rounded-xl text-sm text-gray-800 hidden"></div>
+            </div>
+
+            <!-- New Catchy Title feature -->
+            <div class="space-y-2">
+                <h3 class="text-lg font-medium text-gray-700">Generate Catchy Title</h3>
+                <input type="text" id="titlePrompt" placeholder="e.g., A blog post about AI"
+                    class="w-full p-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors">
+                <button id="generateTitleBtn"
+                    class="w-full py-2 px-4 bg-purple-600 text-white font-semibold rounded-xl shadow-md hover:bg-purple-700 transition-transform transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed">
+                    ✨ Generate Title
+                </button>
+                <div id="titleOutput" class="w-full p-4 bg-gray-50 rounded-xl text-sm text-gray-800 hidden"></div>
+            </div>
+
+            <!-- New FAQ feature -->
+            <div class="space-y-2">
+                <h3 class="text-lg font-medium text-gray-700">Generate an FAQ Section</h3>
+                <input type="text" id="faqPrompt" placeholder="e.g., FAQs about your new product"
+                    class="w-full p-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors">
+                <button id="generateFaqBtn"
+                    class="w-full py-2 px-4 bg-purple-600 text-white font-semibold rounded-xl shadow-md hover:bg-purple-700 transition-transform transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed">
+                    ✨ Generate FAQ
+                </button>
+                <div id="faqOutput" class="w-full p-4 bg-gray-50 rounded-xl text-sm text-gray-800 hidden"></div>
+            </div>
+        </div>
+
+        <!-- Creative Tools Section (initially hidden) -->
+        <div id="section-creative" class="tab-content space-y-4 hidden">
+            <h2 class="text-xl font-bold text-gray-800">Creative Tools</h2>
+            <div class="space-y-2">
+                <h3 class="text-lg font-medium text-gray-700">Brainstorm Ideas</h3>
+                <input type="text" id="brainstormPrompt" placeholder="e.g., Ideas for a new video game"
+                    class="w-full p-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors">
+                <button id="brainstormBtn"
+                    class="w-full py-2 px-4 bg-yellow-500 text-gray-800 font-semibold rounded-xl shadow-md hover:bg-yellow-600 transition-transform transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed">
+                    ✨ Brainstorm Ideas
+                </button>
+                <div id="brainstormOutput" class="w-full p-4 bg-gray-50 rounded-xl text-sm text-gray-800 hidden"></div>
+            </div>
+            <div class="space-y-2">
+                <h3 class="text-lg font-medium text-gray-700">Generate Slogans</h3>
+                <input type="text" id="sloganPrompt" placeholder="e.g., A brand of eco-friendly shoes"
+                    class="w-full p-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors">
+                <button id="sloganBtn"
+                    class="w-full py-2 px-4 bg-yellow-500 text-gray-800 font-semibold rounded-xl shadow-md hover:bg-yellow-600 transition-transform transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed">
+                    ✨ Generate Slogans
+                </button>
+                <div id="sloganOutput" class="w-full p-4 bg-gray-50 rounded-xl text-sm text-gray-800 hidden"></div>
+            </div>
+            <div class="space-y-2">
+                <h3 class="text-lg font-medium text-gray-700">Write a Poem</h3>
+                <input type="text" id="poemPrompt" placeholder="e.g., The beauty of a mountain landscape"
+                    class="w-full p-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors">
+                <button id="poemBtn"
+                    class="w-full py-2 px-4 bg-yellow-500 text-gray-800 font-semibold rounded-xl shadow-md hover:bg-yellow-600 transition-transform transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed">
+                    ✨ Write a Poem
+                </button>
+                <div id="poemOutput" class="w-full p-4 bg-gray-50 rounded-xl text-sm text-gray-800 hidden"></div>
+            </div>
+            <div class="space-y-2">
+                <h3 class="text-lg font-medium text-gray-700">Generate Dialogue</h3>
+                <input type="text" id="dialoguePrompt" placeholder="e.g., A conversation about space travel"
+                    class="w-full p-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors">
+                <div class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4">
+                    <div class="w-full sm:w-1/2 flex items-center space-x-2">
+                        <label for="speaker1Voice" class="text-sm font-medium text-gray-700">Speaker 1:</label>
+                        <select id="speaker1Voice" class="w-full p-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors">
+                            <option value="Kore">Kore</option>
+                            <option value="Zephyr">Zephyr</option>
+                            <option value="Charon">Charon</option>
+                            <option value="Fenrir">Fenrir</option>
+                            <option value="Orus">Orus</option>
+                            <option value="Algenib">Algenib</option>
+                            <option value="Achernar">Achernar</option>
+                            <option value="Alnilam">Alnilam</option>
+                        </select>
+                    </div>
+                    <div class="w-full sm:w-1/2 flex items-center space-x-2">
+                        <label for="speaker2Voice" class="text-sm font-medium text-gray-700">Speaker 2:</label>
+                        <select id="speaker2Voice" class="w-full p-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors">
+                            <option value="Puck">Puck</option>
+                            <option value="Leda">Leda</option>
+                            <option value="Aoede">Aoede</option>
+                            <option value="Callirrhoe">Callirrhoe</option>
+                            <option value="Autonoe">Autonoe</option>
+                            <option value="Despina">Despina</option>
+                            <option value="Erinome">Erinome</option>
+                            <option value="Laomedeia">Laomedeia</option>
+                        </select>
+                    </div>
+                </div>
+                <button id="generateDialogueBtn"
+                    class="w-full py-2 px-4 bg-green-600 text-white font-semibold rounded-xl shadow-md hover:bg-green-700 transition-transform transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed">
+                    ✨ Generate Dialogue
+                </button>
+                <div id="dialogueOutput" class="w-full p-4 bg-gray-50 rounded-xl text-sm text-gray-800 hidden"></div>
+            </div>
+            <div class="space-y-2">
+                <h3 class="text-lg font-medium text-gray-700">Generate Code</h3>
+                <div class="flex items-center space-x-2">
+                    <select id="languageCodeSelect" class="w-1/3 p-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors">
+                        <option value="python">Python</option>
+                        <option value="javascript">JavaScript</option>
+                        <option value="html">HTML</option>
+                        <option value="css">CSS</option>
+                    </select>
+                    <input type="text" id="codePrompt" placeholder="e.g., A function for a factorial calculator"
+                        class="w-2/3 p-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors">
+                </div>
+                <button id="generateCodeBtn"
+                    class="w-full py-2 px-4 bg-yellow-500 text-gray-800 font-semibold rounded-xl shadow-md hover:bg-yellow-600 transition-transform transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed">
+                    ✨ Generate Code
+                </button>
+                <div id="codeOutput" class="w-full p-4 bg-gray-900 text-green-400 font-mono rounded-xl text-sm hidden overflow-auto"></div>
+            </div>
+            
+            <!-- Social Media Post -->
+            <div class="space-y-2">
+                <h3 class="text-lg font-medium text-gray-700">Write a Social Media Post</h3>
+                <input type="text" id="socialPrompt" placeholder="e.g., Tips for a healthy lifestyle"
+                    class="w-full p-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors">
+                <button id="generateSocialBtn"
+                    class="w-full py-2 px-4 bg-yellow-500 text-gray-800 font-semibold rounded-xl shadow-md hover:bg-yellow-600 transition-transform transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed">
+                    ✨ Generate Post
+                </button>
+                <div id="socialOutput" class="w-full p-4 bg-gray-50 rounded-xl text-sm text-gray-800 hidden"></div>
+            </div>
+            
+            <!-- Blog Post Outline -->
+            <div class="space-y-2">
+                <h3 class="text-lg font-medium text-gray-700">Generate Blog Post Outline</h3>
+                <input type="text" id="outlinePrompt" placeholder="e.g., An outline for a blog post about digital marketing"
+                    class="w-full p-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors">
+                <button id="generateOutlineBtn"
+                    class="w-full py-2 px-4 bg-yellow-500 text-gray-800 font-semibold rounded-xl shadow-md hover:bg-yellow-600 transition-transform transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed">
+                    ✨ Generate Blog Post Outline
+                </button>
+                <div id="outlineOutput" class="w-full p-4 bg-gray-50 rounded-xl text-sm text-gray-800 hidden"></div>
+            </div>
+
+            <!-- New Product Description Feature -->
+            <div class="space-y-2">
+                <h3 class="text-lg font-medium text-gray-700">Generate Product Description</h3>
+                <input type="text" id="productNameInput" placeholder="Product Name"
+                    class="w-full p-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors">
+                <textarea id="productFeaturesInput"
+                    class="w-full h-24 p-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                    placeholder="Key features (e.g., waterproof, long battery life, stylish design)"></textarea>
+                <button id="generateProductBtn"
+                    class="w-full py-2 px-4 bg-yellow-500 text-gray-800 font-semibold rounded-xl shadow-md hover:bg-yellow-600 transition-transform transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed">
+                    ✨ Generate Product Description
+                </button>
+                <div id="productOutput" class="w-full p-4 bg-gray-50 rounded-xl text-sm text-gray-800 hidden"></div>
+            </div>
+            
+            <!-- New Short Story feature -->
+            <div class="space-y-2">
+                <h3 class="text-lg font-medium text-gray-700">Create a Short Story</h3>
+                <input type="text" id="storyPrompt" placeholder="e.g., A fantasy story about a magical sword"
+                    class="w-full p-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors">
+                <button id="generateStoryBtn"
+                    class="w-full py-2 px-4 bg-yellow-500 text-gray-800 font-semibold rounded-xl shadow-md hover:bg-yellow-600 transition-transform transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed">
+                    ✨ Generate Story
+                </button>
+                <div id="storyOutput" class="w-full p-4 bg-gray-50 rounded-xl text-sm text-gray-800 hidden"></div>
+            </div>
+        </div>
+        
+        <!-- Result and Download Section -->
+        <div id="resultSection" class="w-full space-y-4 hidden">
+            <div class="w-full">
+                <label for="audioPlayer" class="block text-sm font-medium text-gray-700 mb-1">Listen to your audio:</label>
+                <audio id="audioPlayer" class="w-full rounded-xl" controls></audio>
+            </div>
+            <button id="downloadBtn"
+                class="w-full py-2 px-4 bg-gray-200 text-gray-700 font-semibold rounded-xl shadow-md hover:bg-gray-300 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2">
+                Download Voice File (WAV)
+            </button>
+        </div>
+
+        <!-- Message Box -->
+        <div id="messageBox" class="text-center text-red-500 font-medium hidden"></div>
+        <div id="processingMessage" class="text-center text-blue-500 font-medium hidden">
+            <p>Generating audio, please wait...</p>
+        </div>
+
+    </div>
+
+    <script type="module">
+        // Global variables for Firebase, not used in this app but included for completeness.
+        const __app_id = 'your-app-id';
+        const __firebase_config = '{}';
+        const __initial_auth_token = 'your-auth-token';
+
+        // --- DOM Elements ---
+        const textInput = document.getElementById('textInput');
+        const voiceSelect = document.getElementById('voiceSelect');
+        const convertBtn = document.getElementById('convertBtn');
+        const btnText = document.getElementById('btnText');
+        const loadingSpinner = document.getElementById('loadingSpinner');
+        const resultSection = document.getElementById('resultSection');
+        const audioPlayer = document.getElementById('audioPlayer');
+        const downloadBtn = document.getElementById('downloadBtn');
+        const messageBox = document.getElementById('messageBox');
+        const processingMessage = document.getElementById('processingMessage');
+        
+        // Tab buttons
+        const ttsTabBtn = document.getElementById('tab-tts');
+        const aifeaturesTabBtn = document.getElementById('tab-aifeatures');
+        const creativeTabBtn = document.getElementById('tab-creative');
+
+        // Tab sections
+        const ttsSection = document.getElementById('section-tts');
+        const aifeaturesSection = document.getElementById('section-aifeatures');
+        const creativeSection = document.getElementById('section-creative');
+
+        // AI Text Features
+        const summarizeBtn = document.getElementById('summarizeBtn');
+        const paraphraseBtn = document.getElementById('paraphraseBtn');
+        const fixGrammarBtn = document.getElementById('fixGrammarBtn');
+        const translateBtn = document.getElementById('translateBtn');
+        const languageSelect = document.getElementById('languageSelect');
+        const adjustToneBtn = document.getElementById('adjustToneBtn');
+        const toneSelect = document.getElementById('toneSelect');
+        const expandBtn = document.getElementById('expandBtn');
+        const emailRecipient = document.getElementById('emailRecipient');
+        const emailTopic = document.getElementById('emailTopic');
+        const generateEmailBtn = document.getElementById('generateEmailBtn');
+        const factCheckPrompt = document.getElementById('factCheckPrompt');
+        const factCheckBtn = document.getElementById('factCheckBtn');
+        const answerQuestionPrompt = document.getElementById('answerQuestionPrompt');
+        const answerQuestionBtn = document.getElementById('answerQuestionBtn');
+        const keywordsInput = document.getElementById('keywordsInput');
+        const extractKeywordsBtn = document.getElementById('extractKeywordsBtn');
+        const keywordsOutput = document.getElementById('keywordsOutput');
+        const titlePrompt = document.getElementById('titlePrompt');
+        const generateTitleBtn = document.getElementById('generateTitleBtn');
+        const titleOutput = document.getElementById('titleOutput');
+        const faqPrompt = document.getElementById('faqPrompt');
+        const generateFaqBtn = document.getElementById('generateFaqBtn');
+        const faqOutput = document.getElementById('faqOutput');
+        
+        // Creative Tools
+        const brainstormPrompt = document.getElementById('brainstormPrompt');
+        const brainstormBtn = document.getElementById('brainstormBtn');
+        const brainstormOutput = document.getElementById('brainstormOutput');
+        const sloganPrompt = document.getElementById('sloganPrompt');
+        const sloganBtn = document.getElementById('sloganBtn');
+        const sloganOutput = document.getElementById('sloganOutput');
+        const poemPrompt = document.getElementById('poemPrompt');
+        const poemBtn = document.getElementById('poemBtn');
+        const poemOutput = document.getElementById('poemOutput');
+        const dialoguePrompt = document.getElementById('dialoguePrompt');
+        const generateDialogueBtn = document.getElementById('generateDialogueBtn');
+        const dialogueOutput = document.getElementById('dialogueOutput');
+        const speaker1Voice = document.getElementById('speaker1Voice');
+        const speaker2Voice = document.getElementById('speaker2Voice');
+        const languageCodeSelect = document.getElementById('languageCodeSelect');
+        const codePrompt = document.getElementById('codePrompt');
+        const generateCodeBtn = document.getElementById('generateCodeBtn');
+        const codeOutput = document.getElementById('codeOutput');
+        const socialPrompt = document.getElementById('socialPrompt');
+        const generateSocialBtn = document.getElementById('generateSocialBtn');
+        const socialOutput = document.getElementById('socialOutput');
+        const outlinePrompt = document.getElementById('outlinePrompt');
+        const generateOutlineBtn = document.getElementById('generateOutlineBtn');
+        const outlineOutput = document.getElementById('outlineOutput');
+        const productNameInput = document.getElementById('productNameInput');
+        const productFeaturesInput = document.getElementById('productFeaturesInput');
+        const generateProductBtn = document.getElementById('generateProductBtn');
+        const productOutput = document.getElementById('productOutput');
+        const storyPrompt = document.getElementById('storyPrompt');
+        const generateStoryBtn = document.getElementById('generateStoryBtn');
+        const storyOutput = document.getElementById('storyOutput');
+        
+        let audioUrl = '';
+
+        // --- Tab Switching Logic ---
+        function switchTab(activeTab) {
+            const tabs = [ttsTabBtn, aifeaturesTabBtn, creativeTabBtn];
+            const sections = [ttsSection, aifeaturesSection, creativeSection];
+
+            tabs.forEach(tab => {
+                if (tab.id === `tab-${activeTab}`) {
+                    tab.classList.remove('bg-gray-200', 'text-gray-700');
+                    tab.classList.add('active');
+                } else {
+                    tab.classList.remove('active');
+                    tab.classList.add('bg-gray-200', 'text-gray-700');
+                }
+            });
+
+            sections.forEach(section => {
+                if (section.id === `section-${activeTab}`) {
+                    section.classList.remove('hidden');
+                } else {
+                    section.classList.add('hidden');
+                }
+            });
+        }
+
+        ttsTabBtn.addEventListener('click', () => switchTab('tts'));
+        aifeaturesTabBtn.addEventListener('click', () => switchTab('aifeatures'));
+        creativeTabBtn.addEventListener('click', () => switchTab('creative'));
+
+        // Set initial tab
+        switchTab('tts');
+
+        // --- Helper Functions ---
+        function debounce(func, delay) {
+            let timeout;
+            return (...args) => {
+                clearTimeout(timeout);
+                timeout = setTimeout(() => func(...args), delay);
+            };
+        }
+
+        function base64ToArrayBuffer(base64) {
+            const binaryString = atob(base64);
+            const len = binaryString.length;
+            const bytes = new Uint8Array(len);
+            for (let i = 0; i < len; i++) {
+                bytes[i] = binaryString.charCodeAt(i);
+            }
+            return bytes.buffer;
+        }
+
+        function pcmToWav(pcmData, sampleRate) {
+            const buffer = new ArrayBuffer(44 + pcmData.length * 2);
+            const view = new DataView(buffer);
+            let offset = 0;
+
+            function writeString(str) {
+                for (let i = 0; i < str.length; i++) {
+                    view.setUint8(offset++, str.charCodeAt(i));
+                }
+            }
+
+            function writeUint32(val) {
+                view.setUint32(offset, val, true);
+                offset += 4;
+            }
+
+            function writeUint16(val) {
+                view.setUint16(offset, val, true);
+                offset += 2;
+            }
+
+            writeString('RIFF');
+            writeUint32(36 + pcmData.length * 2);
+            writeString('WAVE');
+            writeString('fmt ');
+            writeUint32(16);
+            writeUint16(1);
+            writeUint16(1);
+            writeUint32(sampleRate);
+            writeUint32(sampleRate * 2);
+            writeUint16(2);
+            writeUint16(16);
+            writeString('data');
+            writeUint32(pcmData.length * 2);
+            
+            for (let i = 0; i < pcmData.length; i++) {
+                view.setInt16(offset, pcmData[i], true);
+                offset += 2;
+            }
+
+            return new Blob([view], { type: 'audio/wav' });
+        }
+
+        async function callGeminiApi(payload, model) {
+            const apiKey = 'AIzaSyAP6qbDX_9b_AybOkaJQ2iBPTXtECpE84k';
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
+
+            const response = await fetch(apiUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+            return response;
+        }
+
+        async function handleTtsGeneration(payload) {
+            try {
+                processingMessage.classList.remove('hidden');
+                const response = await callGeminiApi(payload, "gemini-2.5-flash-preview-tts");
+
+                if (!response.ok) {
+                    const error = await response.json();
+                    throw new Error(`API Error: ${error.error.message}`);
+                }
+                
+                const result = await response.json();
+                const part = result?.candidates?.[0]?.content?.parts?.[0];
+                const audioData = part?.inlineData?.data;
+                const mimeType = part?.inlineData?.mimeType;
+
+                if (audioData && mimeType && mimeType.startsWith("audio/")) {
+                    const match = mimeType.match(/rate=(\d+)/);
+                    if (!match) {
+                        throw new Error('Could not determine audio sample rate from MIME type.');
+                    }
+                    const sampleRate = parseInt(match[1], 10);
+                    const pcmArrayBuffer = base64ToArrayBuffer(audioData);
+                    const pcm16 = new Int16Array(pcmArrayBuffer);
+                    const wavBlob = pcmToWav(pcm16, sampleRate);
+                    audioUrl = URL.createObjectURL(wavBlob);
+                    
+                    audioPlayer.src = audioUrl;
+                    audioPlayer.play();
+                    resultSection.classList.remove('hidden');
+                } else {
+                    throw new Error('No audio data received from the API.');
+                }
+            } catch (error) {
+                console.error("Error generating audio:", error);
+                messageBox.textContent = `Error: ${error.message}`;
+                messageBox.classList.remove('hidden');
+            } finally {
+                processingMessage.classList.add('hidden');
+            }
+        }
+
+        // --- Event Listeners with Debounce ---
+        convertBtn.addEventListener('click', debounce(async () => {
+            const text = textInput.value.trim();
+            const voiceName = voiceSelect.value;
+            
+            messageBox.textContent = '';
+            messageBox.classList.add('hidden');
+            resultSection.classList.add('hidden');
+            audioPlayer.src = '';
+            
+            if (text.length === 0) {
+                messageBox.textContent = 'Please enter some text to convert.';
+                messageBox.classList.remove('hidden');
+                return;
+            }
+            
+            convertBtn.disabled = true;
+            btnText.classList.add('hidden');
+            loadingSpinner.classList.remove('hidden');
+
+            const payload = {
+                contents: [{
+                    parts: [{ text: text }]
+                }],
+                generationConfig: {
+                    responseModalities: ["AUDIO"],
+                    speechConfig: {
+                        voiceConfig: {
+                            prebuiltVoiceConfig: { voiceName: voiceName }
+                        }
+                    }
+                },
+                model: "gemini-2.5-flash-preview-tts"
+            };
+
+            await handleTtsGeneration(payload);
+
+            convertBtn.disabled = false;
+            btnText.classList.remove('hidden');
+            loadingSpinner.classList.add('hidden');
+        }, 500));
+
+        summarizeBtn.addEventListener('click', debounce(async () => {
+            const text = textInput.value.trim();
+            if (text.length === 0) {
+                messageBox.textContent = 'Please enter some text to summarize.';
+                messageBox.classList.remove('hidden');
+                return;
+            }
+            messageBox.textContent = '';
+            messageBox.classList.add('hidden');
+            summarizeBtn.disabled = true;
+            processingMessage.classList.remove('hidden');
+
+            const payload = {
+                contents: [{
+                    parts: [{ text: `Summarize the following text in a short paragraph: ${text}` }]
+                }],
+                model: "gemini-2.5-flash-preview-05-20"
+            };
+
+            try {
+                const response = await callGeminiApi(payload, "gemini-2.5-flash-preview-05-20");
+                if (!response.ok) {
+                    const error = await response.json();
+                    throw new Error(`API Error: ${error.error.message}`);
+                }
+                const result = await response.json();
+                const summary = result?.candidates?.[0]?.content?.parts?.[0]?.text;
+                if (summary) {
+                    textInput.value = summary;
+                } else {
+                    throw new Error('No summary received from the API.');
+                }
+            } catch (error) {
+                console.error("Error summarizing text:", error);
+                messageBox.textContent = `Error: ${error.message}`;
+                messageBox.classList.remove('hidden');
+            } finally {
+                summarizeBtn.disabled = false;
+                processingMessage.classList.add('hidden');
+            }
+        }, 500));
+
+        paraphraseBtn.addEventListener('click', debounce(async () => {
+            const text = textInput.value.trim();
+            if (text.length === 0) {
+                messageBox.textContent = 'Please enter some text to paraphrase.';
+                messageBox.classList.remove('hidden');
+                return;
+            }
+            messageBox.textContent = '';
+            messageBox.classList.add('hidden');
+            paraphraseBtn.disabled = true;
+            processingMessage.classList.remove('hidden');
+
+            const payload = {
+                contents: [{
+                    parts: [{ text: `Paraphrase the following text: ${text}` }]
+                }],
+                model: "gemini-2.5-flash-preview-05-20"
+            };
+
+            try {
+                const response = await callGeminiApi(payload, "gemini-2.5-flash-preview-05-20");
+                if (!response.ok) {
+                    const error = await response.json();
+                    throw new Error(`API Error: ${error.error.message}`);
+                }
+                const result = await response.json();
+                const paraphrasedText = result?.candidates?.[0]?.content?.parts?.[0]?.text;
+                if (paraphrasedText) {
+                    textInput.value = paraphrasedText;
+                } else {
+                    throw new Error('No paraphrased text received from the API.');
+                }
+            } catch (error) {
+                console.error("Error paraphrasing text:", error);
+                messageBox.textContent = `Error: ${error.message}`;
+                messageBox.classList.remove('hidden');
+            } finally {
+                paraphraseBtn.disabled = false;
+                processingMessage.classList.add('hidden');
+            }
+        }, 500));
+
+        fixGrammarBtn.addEventListener('click', debounce(async () => {
+            const text = textInput.value.trim();
+            if (text.length === 0) {
+                messageBox.textContent = 'Please enter some text to fix.';
+                messageBox.classList.remove('hidden');
+                return;
+            }
+            messageBox.textContent = '';
+            messageBox.classList.add('hidden');
+            fixGrammarBtn.disabled = true;
+            processingMessage.classList.remove('hidden');
+
+            const payload = {
+                contents: [{
+                    parts: [{ text: `Correct the grammar and spelling in the following text, and provide only the corrected text: "${text}"` }]
+                }],
+                model: "gemini-2.5-flash-preview-05-20"
+            };
+
+            try {
+                const response = await callGeminiApi(payload, "gemini-2.5-flash-preview-05-20");
+                if (!response.ok) {
+                    const error = await response.json();
+                    throw new Error(`API Error: ${error.error.message}`);
+                }
+                const result = await response.json();
+                const correctedText = result?.candidates?.[0]?.content?.parts?.[0]?.text;
+                if (correctedText) {
+                    textInput.value = correctedText.replace(/^"|"$/g, '');
+                } else {
+                    throw new Error('No corrected text received from the API.');
+                }
+            } catch (error) {
+                console.error("Error fixing grammar:", error);
+                messageBox.textContent = `Error: ${error.message}`;
+                messageBox.classList.remove('hidden');
+            } finally {
+                fixGrammarBtn.disabled = false;
+                processingMessage.classList.add('hidden');
+            }
+        }, 500));
+
+        translateBtn.addEventListener('click', debounce(async () => {
+            const text = textInput.value.trim();
+            const targetLang = languageSelect.value;
+            if (text.length === 0) {
+                messageBox.textContent = 'Please enter some text to translate.';
+                messageBox.classList.remove('hidden');
+                return;
+            }
+            messageBox.textContent = '';
+            messageBox.classList.add('hidden');
+            translateBtn.disabled = true;
+            processingMessage.classList.remove('hidden');
+
+            const payload = {
+                contents: [{
+                    parts: [{ text: `Translate the following English text to ${targetLang}, and provide only the translated text: "${text}"` }]
+                }],
+                model: "gemini-2.5-flash-preview-05-20"
+            };
+
+            try {
+                const response = await callGeminiApi(payload, "gemini-2.5-flash-preview-05-20");
+                if (!response.ok) {
+                    const error = await response.json();
+                    throw new Error(`API Error: ${error.error.message}`);
+                }
+                const result = await response.json();
+                const translatedText = result?.candidates?.[0]?.content?.parts?.[0]?.text;
+                if (translatedText) {
+                    textInput.value = translatedText;
+                } else {
+                    throw new Error('No translated text received from the API.');
+                }
+            } catch (error) {
+                console.error("Error translating text:", error);
+                messageBox.textContent = `Error: ${error.message}`;
+                messageBox.classList.remove('hidden');
+            } finally {
+                translateBtn.disabled = false;
+                processingMessage.classList.add('hidden');
+            }
+        }, 500));
+
+        adjustToneBtn.addEventListener('click', debounce(async () => {
+            const text = textInput.value.trim();
+            const tone = toneSelect.value;
+            if (text.length === 0) {
+                messageBox.textContent = 'Please enter some text to adjust the tone.';
+                messageBox.classList.remove('hidden');
+                return;
+            }
+            messageBox.textContent = '';
+            messageBox.classList.add('hidden');
+            adjustToneBtn.disabled = true;
+            processingMessage.classList.remove('hidden');
+
+            const payload = {
+                contents: [{
+                    parts: [{ text: `Rewrite the following text in a ${tone} tone: "${text}"` }]
+                }],
+                model: "gemini-2.5-flash-preview-05-20"
+            };
+
+            try {
+                const response = await callGeminiApi(payload, "gemini-2.5-flash-preview-05-20");
+                if (!response.ok) {
+                    const error = await response.json();
+                    throw new Error(`API Error: ${error.error.message}`);
+                }
+                const result = await response.json();
+                const adjustedText = result?.candidates?.[0]?.content?.parts?.[0]?.text;
+                if (adjustedText) {
+                    textInput.value = adjustedText.replace(/^"|"$/g, '');
+                } else {
+                    throw new Error('No adjusted text received from the API.');
+                }
+            } catch (error) {
+                console.error("Error adjusting tone:", error);
+                messageBox.textContent = `Error: ${error.message}`;
+                messageBox.classList.remove('hidden');
+            } finally {
+                adjustToneBtn.disabled = false;
+                processingMessage.classList.add('hidden');
+            }
+        }, 500));
+
+        expandBtn.addEventListener('click', debounce(async () => {
+            const text = textInput.value.trim();
+            if (text.length === 0) {
+                messageBox.textContent = 'Please enter some text to expand.';
+                messageBox.classList.remove('hidden');
+                return;
+            }
+            messageBox.textContent = '';
+            messageBox.classList.add('hidden');
+            expandBtn.disabled = true;
+            processingMessage.classList.remove('hidden');
+
+            const payload = {
+                contents: [{
+                    parts: [{ text: `Expand the following text into a detailed paragraph: "${text}"` }]
+                }],
+                model: "gemini-2.5-flash-preview-05-20"
+            };
+
+            try {
+                const response = await callGeminiApi(payload, "gemini-2.5-flash-preview-05-20");
+                if (!response.ok) {
+                    const error = await response.json();
+                    throw new Error(`API Error: ${error.error.message}`);
+                }
+                const result = await response.json();
+                const expandedText = result?.candidates?.[0]?.content?.parts?.[0]?.text;
+                if (expandedText) {
+                    textInput.value = expandedText;
+                } else {
+                    throw new Error('No expanded text received from the API.');
+                }
+            } catch (error) {
+                console.error("Error expanding text:", error);
+                messageBox.textContent = `Error: ${error.message}`;
+                messageBox.classList.remove('hidden');
+            } finally {
+                expandBtn.disabled = false;
+                processingMessage.classList.add('hidden');
+            }
+        }, 500));
+
+        generateEmailBtn.addEventListener('click', debounce(async () => {
+            const recipient = emailRecipient.value.trim();
+            const topic = emailTopic.value.trim();
+            if (recipient.length === 0 || topic.length === 0) {
+                messageBox.textContent = 'Please enter both the recipient and email topic.';
+                messageBox.classList.remove('hidden');
+                return;
+            }
+            messageBox.textContent = '';
+            messageBox.classList.add('hidden');
+            generateEmailBtn.disabled = true;
+            processingMessage.classList.remove('hidden');
+
+            const payload = {
+                contents: [{
+                    parts: [{ text: `Write a short, professional business email to ${recipient} about the following topic: "${topic}".` }]
+                }],
+                model: "gemini-2.5-flash-preview-05-20"
+            };
+
+            try {
+                const response = await callGeminiApi(payload, "gemini-2.5-flash-preview-05-20");
+                if (!response.ok) {
+                    const error = await response.json();
+                    throw new Error(`API Error: ${error.error.message}`);
+                }
+                const result = await response.json();
+                const emailDraft = result?.candidates?.[0]?.content?.parts?.[0]?.text;
+                if (emailDraft) {
+                    textInput.value = emailDraft;
+                } else {
+                    throw new Error('No email draft received from the API.');
+                }
+            } catch (error) {
+                console.error("Error generating email:", error);
+                messageBox.textContent = `Error: ${error.message}`;
+                messageBox.classList.remove('hidden');
+            } finally {
+                generateEmailBtn.disabled = false;
+                processingMessage.classList.add('hidden');
+            }
+        }, 500));
+
+        // New Fact Check and Answer Question features
+        factCheckBtn.addEventListener('click', debounce(async () => {
+            const prompt = factCheckPrompt.value.trim();
+            if (prompt.length === 0) {
+                messageBox.textContent = 'Please enter a statement to fact check.';
+                messageBox.classList.remove('hidden');
+                return;
+            }
+            messageBox.textContent = '';
+            messageBox.classList.add('hidden');
+            factCheckBtn.disabled = true;
+            processingMessage.classList.remove('hidden');
+
+            const payload = {
+                contents: [{
+                    parts: [{ text: `Fact check the following statement: "${prompt}". Provide a clear answer (True, False, or Unverifiable) and a short explanation.` }]
+                }],
+                tools: [{ "google_search": {} }],
+                model: "gemini-2.5-flash-preview-05-20"
+            };
+
+            try {
+                const response = await callGeminiApi(payload, "gemini-2.5-flash-preview-05-20");
+                if (!response.ok) {
+                    const error = await response.json();
+                    throw new Error(`API Error: ${error.error.message}`);
+                }
+                const result = await response.json();
+                const factCheckResult = result?.candidates?.[0]?.content?.parts?.[0]?.text;
+                if (factCheckResult) {
+                    textInput.value = factCheckResult;
+                } else {
+                    throw new Error('No fact check result received from the API.');
+                }
+            } catch (error) {
+                console.error("Error fact checking:", error);
+                messageBox.textContent = `Error: ${error.message}`;
+                messageBox.classList.remove('hidden');
+            } finally {
+                factCheckBtn.disabled = false;
+                processingMessage.classList.add('hidden');
+            }
+        }, 500));
+
+        // New Answer Question feature
+        answerQuestionBtn.addEventListener('click', debounce(async () => {
+            const prompt = answerQuestionPrompt.value.trim();
+            if (prompt.length === 0) {
+                messageBox.textContent = 'Please enter a question to answer.';
+                messageBox.classList.remove('hidden');
+                return;
+            }
+            messageBox.textContent = '';
+            messageBox.classList.add('hidden');
+            answerQuestionBtn.disabled = true;
+            processingMessage.classList.remove('hidden');
+
+            const payload = {
+                contents: [{
+                    parts: [{ text: `Answer the following question clearly and concisely: "${prompt}".` }]
+                }],
+                tools: [{ "google_search": {} }],
+                model: "gemini-2.5-flash-preview-05-20"
+            };
+
+            try {
+                const response = await callGeminiApi(payload, "gemini-2.5-flash-preview-05-20");
+                if (!response.ok) {
+                    const error = await response.json();
+                    throw new Error(`API Error: ${error.error.message}`);
+                }
+                const result = await response.json();
+                const answer = result?.candidates?.[0]?.content?.parts?.[0]?.text;
+                if (answer) {
+                    textInput.value = answer;
+                } else {
+                    throw new Error('No answer received from the API.');
+                }
+            } catch (error) {
+                console.error("Error answering question:", error);
+                messageBox.textContent = `Error: ${error.message}`;
+                messageBox.classList.remove('hidden');
+            } finally {
+                answerQuestionBtn.disabled = false;
+                processingMessage.classList.add('hidden');
+            }
+        }, 500));
+
+        // New Extract Keywords feature
+        extractKeywordsBtn.addEventListener('click', debounce(async () => {
+            const text = keywordsInput.value.trim();
+            if (text.length === 0) {
+                messageBox.textContent = 'Please enter some text to extract keywords from.';
+                messageBox.classList.remove('hidden');
+                return;
+            }
+            messageBox.textContent = '';
+            messageBox.classList.add('hidden');
+            extractKeywordsBtn.disabled = true;
+            
+            const payload = {
+                contents: [{
+                    parts: [{ text: `Extract the most important keywords from the following text and provide them as a comma-separated list: "${text}"` }]
+                }],
+                model: "gemini-2.5-flash-preview-05-20"
+            };
+
+            try {
+                const response = await callGeminiApi(payload, "gemini-2.5-flash-preview-05-20");
+                if (!response.ok) {
+                    const error = await response.json();
+                    throw new Error(`API Error: ${error.error.message}`);
+                }
+                const result = await response.json();
+                const keywords = result?.candidates?.[0]?.content?.parts?.[0]?.text;
+                if (keywords) {
+                    keywordsOutput.textContent = keywords;
+                    keywordsOutput.classList.remove('hidden');
+                } else {
+                    throw new Error('No keywords received from the API.');
+                }
+            } catch (error) {
+                console.error("Error extracting keywords:", error);
+                messageBox.textContent = `Error: ${error.message}`;
+                messageBox.classList.remove('hidden');
+            } finally {
+                extractKeywordsBtn.disabled = false;
+            }
+        }, 500));
+        
+        // New Catchy Title feature
+        generateTitleBtn.addEventListener('click', debounce(async () => {
+            const prompt = titlePrompt.value.trim();
+            if (prompt.length === 0) {
+                messageBox.textContent = 'Please enter a topic for the title.';
+                messageBox.classList.remove('hidden');
+                return;
+            }
+            messageBox.textContent = '';
+            messageBox.classList.add('hidden');
+            generateTitleBtn.disabled = true;
+
+            const payload = {
+                contents: [{
+                    parts: [{ text: `Generate 5 catchy titles for the following topic: "${prompt}". Provide the response as a bulleted list.` }]
+                }],
+                model: "gemini-2.5-flash-preview-05-20"
+            };
+
+            try {
+                const response = await callGeminiApi(payload, "gemini-2.5-flash-preview-05-20");
+                if (!response.ok) {
+                    const error = await response.json();
+                    throw new Error(`API Error: ${error.error.message}`);
+                }
+                const result = await response.json();
+                const titles = result?.candidates?.[0]?.content?.parts?.[0]?.text;
+                if (titles) {
+                    titleOutput.textContent = titles;
+                    titleOutput.classList.remove('hidden');
+                } else {
+                    throw new Error('No titles received from the API.');
+                }
+            } catch (error) {
+                console.error("Error generating titles:", error);
+                messageBox.textContent = `Error: ${error.message}`;
+                messageBox.classList.remove('hidden');
+            } finally {
+                generateTitleBtn.disabled = false;
+            }
+        }, 500));
+
+        // New FAQ feature
+        generateFaqBtn.addEventListener('click', debounce(async () => {
+            const prompt = faqPrompt.value.trim();
+            if (prompt.length === 0) {
+                messageBox.textContent = 'Please enter a topic for the FAQ.';
+                messageBox.classList.remove('hidden');
+                return;
+            }
+            messageBox.textContent = '';
+            messageBox.classList.add('hidden');
+            generateFaqBtn.disabled = true;
+            
+            const payload = {
+                contents: [{
+                    parts: [{ text: `Generate a list of 5 frequently asked questions and answers for the following topic: "${prompt}".` }]
+                }],
+                model: "gemini-2.5-flash-preview-05-20"
+            };
+
+            try {
+                const response = await callGeminiApi(payload, "gemini-2.5-flash-preview-05-20");
+                if (!response.ok) {
+                    const error = await response.json();
+                    throw new Error(`API Error: ${error.error.message}`);
+                }
+                const result = await response.json();
+                const faq = result?.candidates?.[0]?.content?.parts?.[0]?.text;
+                if (faq) {
+                    faqOutput.textContent = faq;
+                    faqOutput.classList.remove('hidden');
+                } else {
+                    throw new Error('No FAQ received from the API.');
+                }
+            } catch (error) {
+                console.error("Error generating FAQ:", error);
+                messageBox.textContent = `Error: ${error.message}`;
+                messageBox.classList.remove('hidden');
+            } finally {
+                generateFaqBtn.disabled = false;
+            }
+        }, 500));
+
+        brainstormBtn.addEventListener('click', debounce(async () => {
+            const prompt = brainstormPrompt.value.trim();
+            if (prompt.length === 0) {
+                messageBox.textContent = 'Please enter a topic to brainstorm.';
+                messageBox.classList.remove('hidden');
+                return;
+            }
+            messageBox.textContent = '';
+            messageBox.classList.add('hidden');
+            brainstormBtn.disabled = true;
+            
+            const payload = {
+                contents: [{
+                    parts: [{ text: `Brainstorm a creative list of 5-10 ideas for the following topic: "${prompt}". Provide the response as a bulleted list.` }]
+                }],
+                model: "gemini-2.5-flash-preview-05-20"
+            };
+
+            try {
+                const response = await callGeminiApi(payload, "gemini-2.5-flash-preview-05-20");
+                if (!response.ok) {
+                    const error = await response.json();
+                    throw new Error(`API Error: ${error.error.message}`);
+                }
+                const result = await response.json();
+                const ideas = result?.candidates?.[0]?.content?.parts?.[0]?.text;
+                if (ideas) {
+                    brainstormOutput.textContent = ideas;
+                    brainstormOutput.classList.remove('hidden');
+                } else {
+                    throw new Error('No ideas received from the API.');
+                }
+            } catch (error) {
+                console.error("Error brainstorming ideas:", error);
+                messageBox.textContent = `Error: ${error.message}`;
+                messageBox.classList.remove('hidden');
+            } finally {
+                brainstormBtn.disabled = false;
+            }
+        }, 500));
+
+        sloganBtn.addEventListener('click', debounce(async () => {
+            const prompt = sloganPrompt.value.trim();
+            if (prompt.length === 0) {
+                messageBox.textContent = 'Please enter a product or brand name.';
+                messageBox.classList.remove('hidden');
+                return;
+            }
+            messageBox.textContent = '';
+            messageBox.classList.add('hidden');
+            sloganBtn.disabled = true;
+            
+            const payload = {
+                contents: [{
+                    parts: [{ text: `Generate 5 short and catchy slogans for the following: "${prompt}". Provide the response as a bulleted list.` }]
+                }],
+                model: "gemini-2.5-flash-preview-05-20"
+            };
+
+            try {
+                const response = await callGeminiApi(payload, "gemini-2.5-flash-preview-05-20");
+                if (!response.ok) {
+                    const error = await response.json();
+                    throw new Error(`API Error: ${error.error.message}`);
+                }
+                const result = await response.json();
+                const slogans = result?.candidates?.[0]?.content?.parts?.[0]?.text;
+                if (slogans) {
+                    sloganOutput.textContent = slogans;
+                    sloganOutput.classList.remove('hidden');
+                } else {
+                    throw new Error('No slogans received from the API.');
+                }
+            } catch (error) {
+                console.error("Error generating slogans:", error);
+                messageBox.textContent = `Error: ${error.message}`;
+                messageBox.classList.remove('hidden');
+            } finally {
+                sloganBtn.disabled = false;
+            }
+        }, 500));
+
+        poemBtn.addEventListener('click', debounce(async () => {
+            const prompt = poemPrompt.value.trim();
+            if (prompt.length === 0) {
+                messageBox.textContent = 'Please enter a topic for the poem.';
+                messageBox.classList.remove('hidden');
+                return;
+            }
+            messageBox.textContent = '';
+            messageBox.classList.add('hidden');
+            poemBtn.disabled = true;
+            
+            const payload = {
+                contents: [{
+                    parts: [{ text: `Write a short, creative poem about the following topic: "${prompt}".` }]
+                }],
+                model: "gemini-2.5-flash-preview-05-20"
+            };
+
+            try {
+                const response = await callGeminiApi(payload, "gemini-2.5-flash-preview-05-20");
+                if (!response.ok) {
+                    const error = await response.json();
+                    throw new Error(`API Error: ${error.error.message}`);
+                }
+                const result = await response.json();
+                const poem = result?.candidates?.[0]?.content?.parts?.[0]?.text;
+                if (poem) {
+                    poemOutput.textContent = poem;
+                    poemOutput.classList.remove('hidden');
+                } else {
+                    throw new Error('No poem received from the API.');
+                }
+            } catch (error) {
+                console.error("Error writing poem:", error);
+                messageBox.textContent = `Error: ${error.message}`;
+                messageBox.classList.remove('hidden');
+            } finally {
+                poemBtn.disabled = false;
+            }
+        }, 500));
+
+        // New Short Story feature
+        generateStoryBtn.addEventListener('click', debounce(async () => {
+            const prompt = storyPrompt.value.trim();
+            if (prompt.length === 0) {
+                messageBox.textContent = 'Please enter a topic for the story.';
+                messageBox.classList.remove('hidden');
+                return;
+            }
+            messageBox.textContent = '';
+            messageBox.classList.add('hidden');
+            generateStoryBtn.disabled = true;
+            
+            const payload = {
+                contents: [{
+                    parts: [{ text: `Write a short story (3-5 paragraphs) based on the following topic: "${prompt}".` }]
+                }],
+                model: "gemini-2.5-flash-preview-05-20"
+            };
+
+            try {
+                const response = await callGeminiApi(payload, "gemini-2.5-flash-preview-05-20");
+                if (!response.ok) {
+                    const error = await response.json();
+                    throw new Error(`API Error: ${error.error.message}`);
+                }
+                const result = await response.json();
+                const story = result?.candidates?.[0]?.content?.parts?.[0]?.text;
+                if (story) {
+                    storyOutput.textContent = story;
+                    storyOutput.classList.remove('hidden');
+                } else {
+                    throw new Error('No story received from the API.');
+                }
+            } catch (error) {
+                console.error("Error creating short story:", error);
+                messageBox.textContent = `Error: ${error.message}`;
+                messageBox.classList.remove('hidden');
+            } finally {
+                generateStoryBtn.disabled = false;
+            }
+        }, 500));
+
+        // New Blog Post Outline feature
+        generateOutlineBtn.addEventListener('click', debounce(async () => {
+            const prompt = outlinePrompt.value.trim();
+            if (prompt.length === 0) {
+                messageBox.textContent = 'Please enter a topic for the blog post outline.';
+                messageBox.classList.remove('hidden');
+                return;
+            }
+            messageBox.textContent = '';
+            messageBox.classList.add('hidden');
+            generateOutlineBtn.disabled = true;
+            
+            const payload = {
+                contents: [{
+                    parts: [{ text: `Generate a detailed and organized blog post outline for the following topic: "${prompt}".` }]
+                }],
+                model: "gemini-2.5-flash-preview-05-20"
+            };
+
+            try {
+                const response = await callGeminiApi(payload, "gemini-2.5-flash-preview-05-20");
+                if (!response.ok) {
+                    const error = await response.json();
+                    throw new Error(`API Error: ${error.error.message}`);
+                }
+                const result = await response.json();
+                const outline = result?.candidates?.[0]?.content?.parts?.[0]?.text;
+                if (outline) {
+                    outlineOutput.textContent = outline;
+                    outlineOutput.classList.remove('hidden');
+                } else {
+                    throw new Error('No outline received from the API.');
+                }
+            } catch (error) {
+                console.error("Error generating outline:", error);
+                messageBox.textContent = `Error: ${error.message}`;
+                messageBox.classList.remove('hidden');
+            } finally {
+                generateOutlineBtn.disabled = false;
+            }
+        }, 500));
+
+        // New Product Description Feature
+        generateProductBtn.addEventListener('click', debounce(async () => {
+            const name = productNameInput.value.trim();
+            const features = productFeaturesInput.value.trim();
+            if (name.length === 0 || features.length === 0) {
+                messageBox.textContent = 'Please enter both a product name and its features.';
+                messageBox.classList.remove('hidden');
+                return;
+            }
+            messageBox.textContent = '';
+            messageBox.classList.add('hidden');
+            generateProductBtn.disabled = true;
+            
+            const payload = {
+                contents: [{
+                    parts: [{ text: `Write a compelling product description for a product named "${name}" with the following features: ${features}.` }]
+                }],
+                model: "gemini-2.5-flash-preview-05-20"
+            };
+
+            try {
+                const response = await callGeminiApi(payload, "gemini-2.5-flash-preview-05-20");
+                if (!response.ok) {
+                    const error = await response.json();
+                    throw new Error(`API Error: ${error.error.message}`);
+                }
+                const result = await response.json();
+                const description = result?.candidates?.[0]?.content?.parts?.[0]?.text;
+                if (description) {
+                    productOutput.textContent = description;
+                    productOutput.classList.remove('hidden');
+                } else {
+                    throw new Error('No product description received from the API.');
+                }
+            } catch (error) {
+                console.error("Error generating product description:", error);
+                messageBox.textContent = `Error: ${error.message}`;
+                messageBox.classList.remove('hidden');
+            } finally {
+                generateProductBtn.disabled = false;
+            }
+        }, 500));
+
+        generateCodeBtn.addEventListener('click', debounce(async () => {
+            const prompt = codePrompt.value.trim();
+            const language = languageCodeSelect.value;
+            if (prompt.length === 0) {
+                messageBox.textContent = 'Please enter a description for the code.';
+                messageBox.classList.remove('hidden');
+                return;
+            }
+            messageBox.textContent = '';
+            messageBox.classList.add('hidden');
+            generateCodeBtn.disabled = true;
+            
+            const payload = {
+                contents: [{
+                    parts: [{ text: `Generate a commented and runnable code snippet in ${language} for the following description: "${prompt}". Do not include any text before or after the code block. Use Markdown syntax for the code block.` }]
+                }],
+                model: "gemini-2.5-flash-preview-05-20"
+            };
+
+            try {
+                const response = await callGeminiApi(payload, "gemini-2.5-flash-preview-05-20");
+                if (!response.ok) {
+                    const error = await response.json();
+                    throw new Error(`API Error: ${error.error.message}`);
+                }
+                const result = await response.json();
+                const code = result?.candidates?.[0]?.content?.parts?.[0]?.text;
+                if (code) {
+                    const codeMatch = code.match(/```[a-z]*\n([\s\S]*?)```/);
+                    if (codeMatch && codeMatch[1]) {
+                        codeOutput.textContent = codeMatch[1].trim();
+                    } else {
+                        codeOutput.textContent = code;
+                    }
+                    codeOutput.classList.remove('hidden');
+                } else {
+                    throw new Error('No code received from the API.');
+                }
+            } catch (error) {
+                console.error("Error generating code:", error);
+                messageBox.textContent = `Error: ${error.message}`;
+                messageBox.classList.remove('hidden');
+            } finally {
+                generateCodeBtn.disabled = false;
+            }
+        }, 500));
+
+        generateDialogueBtn.addEventListener('click', debounce(async () => {
+            const prompt = dialoguePrompt.value.trim();
+            const speaker1 = speaker1Voice.value;
+            const speaker2 = speaker2Voice.value;
+
+            if (prompt.length === 0) {
+                messageBox.textContent = 'Please enter a topic for the dialogue.';
+                messageBox.classList.remove('hidden');
+                return;
+            }
+            messageBox.textContent = '';
+            messageBox.classList.add('hidden');
+            generateDialogueBtn.disabled = true;
+            processingMessage.classList.remove('hidden');
+            
+            const textPayload = {
+                contents: [{
+                    parts: [{ text: `Generate a short conversation between two speakers, Joe and Jane, based on the following topic: "${prompt}". Format the response as "Joe: [dialogue]\nJane: [dialogue]".` }]
+                }],
+                model: "gemini-2.5-flash-preview-05-20"
+            };
+
+            try {
+                const textResponse = await callGeminiApi(textPayload, "gemini-2.5-flash-preview-05-20");
+                if (!textResponse.ok) {
+                    const error = await textResponse.json();
+                    throw new Error(`Dialogue generation API Error: ${error.error.message}`);
+                }
+                const textResult = await textResponse.json();
+                const dialogue = textResult?.candidates?.[0]?.content?.parts?.[0]?.text;
+                
+                if (!dialogue) {
+                    throw new Error('No dialogue received from the API.');
+                }
+                
+                dialogueOutput.textContent = dialogue;
+                dialogueOutput.classList.remove('hidden');
+
+                const ttsPayload = {
+                    contents: [{
+                        parts: [{ text: `TTS the following conversation between Joe and Jane:\n${dialogue}` }]
+                    }],
+                    generationConfig: {
+                        responseModalities: ["AUDIO"],
+                        speechConfig: {
+                            multiSpeakerVoiceConfig: {
+                                speakerVoiceConfigs: [
+                                    { speaker: "Joe", voiceConfig: { prebuiltVoiceConfig: { voiceName: speaker1 } } },
+                                    { speaker: "Jane", voiceConfig: { prebuiltVoiceConfig: { voiceName: speaker2 } } }
+                                ]
+                            }
+                        }
+                    },
+                    model: "gemini-2.5-flash-preview-tts"
+                };
+
+                await handleTtsGeneration(ttsPayload);
+
+            } catch (error) {
+                console.error("Error generating dialogue:", error);
+                messageBox.textContent = `Error: ${error.message}`;
+                messageBox.classList.remove('hidden');
+            } finally {
+                generateDialogueBtn.disabled = false;
+                processingMessage.classList.add('hidden');
+            }
+        }, 500));
+
+        generateSocialBtn.addEventListener('click', debounce(async () => {
+            const prompt = socialPrompt.value.trim();
+            if (prompt.length === 0) {
+                messageBox.textContent = 'Please enter a topic for the social media post.';
+                messageBox.classList.remove('hidden');
+                return;
+            }
+            messageBox.textContent = '';
+            messageBox.classList.add('hidden');
+            generateSocialBtn.disabled = true;
+            
+            const payload = {
+                contents: [{
+                    parts: [{ text: `Write a short, engaging social media post about the following topic: "${prompt}". Include relevant hashtags.` }]
+                }],
+                model: "gemini-2.5-flash-preview-05-20"
+            };
+
+            try {
+                const response = await callGeminiApi(payload, "gemini-2.5-flash-preview-05-20");
+                if (!response.ok) {
+                    const error = await response.json();
+                    throw new Error(`API Error: ${error.error.message}`);
+                }
+                const result = await response.json();
+                const post = result?.candidates?.[0]?.content?.parts?.[0]?.text;
+                if (post) {
+                    socialOutput.textContent = post;
+                    socialOutput.classList.remove('hidden');
+                } else {
+                    throw new Error('No post received from the API.');
+                }
+            } catch (error) {
+                console.error("Error generating social media post:", error);
+                messageBox.textContent = `Error: ${error.message}`;
+                messageBox.classList.remove('hidden');
+            } finally {
+                generateSocialBtn.disabled = false;
+            }
+        }, 500));
+
+        downloadBtn.addEventListener('click', () => {
+            if (audioUrl) {
+                const link = document.createElement('a');
+                link.href = audioUrl;
+                link.download = 'tts-audio.wav';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            } else {
+                messageBox.textContent = 'Please generate audio first before downloading.';
+                messageBox.classList.remove('hidden');
+            }
+        });
+    </script>
+</body>
+</html>
